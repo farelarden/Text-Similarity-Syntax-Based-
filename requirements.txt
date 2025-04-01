@@ -7,5 +7,4 @@ fitz
 frontend
 tools
 Pillow
-PyMuPDF
 pytesseract
