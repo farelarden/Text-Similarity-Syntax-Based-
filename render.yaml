@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: text-similarity
+    env: python
+    plan: free
+    buildCommand: "apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-deu && pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    repo: https://github.com/username/text-similarity-app.git
+    branch: main
