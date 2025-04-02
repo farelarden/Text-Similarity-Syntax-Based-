@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask import Flask, render_template
-import PyMuPDF  # For PDF text extraction
+import pymupdf  # For PDF text extraction
 import pytesseract  # For OCR
 from PIL import Image  # For image handling
 
