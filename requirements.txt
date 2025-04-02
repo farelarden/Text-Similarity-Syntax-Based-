@@ -24,3 +24,4 @@ markupsafe
 blinker
 jinja2
 packaging
+joblib
