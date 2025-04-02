@@ -7,6 +7,8 @@ import pytesseract
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from werkzeug.utils import secure_filename
+import subprocess
+import pkg_resources
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
@@ -35,11 +37,11 @@ def pdf_to_text(pdf_file):
 def image_to_text(image_file):
     try:
         image = Image.open(image_file)
-        max_size = (1000, 1000)
+        max_size = (500, 500)
         image.thumbnail(max_size, Image.Resampling.LANCZOS)
-        text = pytesseract.image_to_string(image, lang='deu', timeout=30)
+        text = pytesseract.image_to_string(image, lang='deu', timeout=60)
         return text.strip()
-    except pytesseract.TesseractTimeoutError:
+    except subprocess.TimeoutExpired:
         return "Error: Tesseract timed out while processing the image"
     except Exception as e:
         return f"Error processing image: {str(e)}"
@@ -88,16 +90,20 @@ def test_tesseract():
         return f"Tesseract version: {version}<br>Available languages: {languages}"
     except Exception as e:
         return f"Tesseract error: {str(e)}"
+
 @app.route('/test-pymupdf')
 def test_pymupdf():
     try:
         import fitz
         version = fitz.__version__
         module_path = fitz.__file__
-        return f"PyMuPDF version: {version}<br>Module path: {module_path}"
+        installed_packages = [(d.project_name, d.version) for d in pkg_resources.working_set]
+        return (f"PyMuPDF version: {version}<br>"
+                f"Module path: {module_path}<br>"
+                f"Installed packages: {installed_packages}")
     except Exception as e:
         return f"PyMuPDF error: {str(e)}"
-        
+
 @app.route('/submit', methods=['POST'])
 def submit():
     if 'file1' not in request.files or 'file2' not in request.files:
