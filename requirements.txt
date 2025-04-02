@@ -18,3 +18,4 @@ anyio
 sniffio
 typing_extensions
 uvicorn
+click
