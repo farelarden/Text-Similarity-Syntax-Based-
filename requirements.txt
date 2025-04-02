@@ -26,3 +26,4 @@ jinja2
 packaging
 joblib
 scipy
+threadpoolctl
