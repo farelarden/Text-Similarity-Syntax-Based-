@@ -8,4 +8,4 @@ frontend
 tools
 Pillow
 pytesseract
-PyMuPDF==1.23.5
+PyMuPDF
