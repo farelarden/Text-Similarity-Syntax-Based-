@@ -16,3 +16,4 @@ six
 starlette
 anyio
 sniffio
+typing_extensions
