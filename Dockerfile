@@ -10,12 +10,11 @@ RUN apt-get update && apt-get install -y \
 
 ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata/
 
-# Install other dependencies first
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install PyMuPDF last to ensure the correct version
-RUN pip install --no-cache-dir PyMuPDF==1.24.2
+# Force-reinstall PyMuPDF to override any conflicts
+RUN pip install --no-cache-dir --force-reinstall PyMuPDF==1.24.2
 
 COPY . .
 
