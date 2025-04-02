@@ -88,7 +88,16 @@ def test_tesseract():
         return f"Tesseract version: {version}<br>Available languages: {languages}"
     except Exception as e:
         return f"Tesseract error: {str(e)}"
-
+@app.route('/test-pymupdf')
+def test_pymupdf():
+    try:
+        import fitz
+        version = fitz.__version__
+        module_path = fitz.__file__
+        return f"PyMuPDF version: {version}<br>Module path: {module_path}"
+    except Exception as e:
+        return f"PyMuPDF error: {str(e)}"
+        
 @app.route('/submit', methods=['POST'])
 def submit():
     if 'file1' not in request.files or 'file2' not in request.files:
