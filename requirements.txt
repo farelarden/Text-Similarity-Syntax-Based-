@@ -21,3 +21,4 @@ uvicorn
 click
 itsdangerous
 markupsafe
+blinker
