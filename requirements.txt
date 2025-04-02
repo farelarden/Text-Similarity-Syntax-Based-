@@ -10,3 +10,5 @@ Pillow
 pytesseract
 PyMuPDF==1.24.2
 werkzeug
+pytz
+python-dateutil
