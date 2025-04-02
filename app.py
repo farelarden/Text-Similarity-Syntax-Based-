@@ -22,7 +22,7 @@ german_stop_words = [
 # --- PDF Processing ---
 def pdf_to_text(pdf_file):
     try:
-        pdf_document = fitz.open(pdf_file)
+        pdf_document = fitz.Document(pdf_file)  # Updated from fitz.open
         extracted_text = ""
         for page_num in range(len(pdf_document)):
             page = pdf_document[page_num]
