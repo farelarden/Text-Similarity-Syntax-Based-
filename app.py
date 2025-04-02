@@ -22,7 +22,7 @@ german_stop_words = [
 
 def pdf_to_text(pdf_file):
     try:
-        pdf_document = fitz.Document(pdf_file)
+        pdf_document = fitz.open(pdf_file)  # Use fitz.open for compatibility with older PyMuPDF versions
         extracted_text = ""
         for page_num in range(len(pdf_document)):
             page = pdf_document[page_num]
