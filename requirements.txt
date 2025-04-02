@@ -19,3 +19,4 @@ sniffio
 typing_extensions
 uvicorn
 click
+itsdangerous
