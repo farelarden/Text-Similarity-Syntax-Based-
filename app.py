@@ -116,6 +116,14 @@ def submit():
                           file1_name=file1_name, text1=text1[:500], 
                           file2_name=file2_name, text2=text2[:500],
                           tfidf_similarity=tfidf_sim)
-
+@app.route('/test-tesseract')
+def test_tesseract():
+    try:
+        # Run a simple Tesseract command to check if it works
+        result = pytesseract.get_tesseract_version()
+        return f"Tesseract version: {result}"
+    except Exception as e:
+        return f"Tesseract error: {str(e)}"
+        
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
